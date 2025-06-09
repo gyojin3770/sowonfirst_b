@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sowon's First Birthday</title>
+    <link rel="stylesheet" href="style2.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <meta property="og:title" content="소원이의 첫 생일에 초대합니다 🎉" />
+    <meta property="og:description" content="사랑스러운 소원이의 돌잔치에 초대드려요. 날짜와 장소를 확인해주세요!" />
+    <meta property="og:url" content="https://gyojin3770.github.io/baby-invite/" />
+    <meta property="og:type" content="website" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <!--
+  <div id="introScreen" class="fixed inset-0 bg-white flex items-center justify-center z-50 transition-opacity duration-1000">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold text-pink-600">🎉 초대합니다!</h1>
+      <p class="mt-2 text-gray-500">잠시 후 시작됩니다...</p>
+    </div>
+  </div>
+  <div id="mainContent" class="opacity-0 transition-opacity duration-1000">
+   --> <audio id="bgm" loop>
+      <source src="배경음악파일주소.mp3" type="audio/mpeg" />
+      브라우저가 오디오를 지원하지 않습니다.
+    </audio>
+    
+    <button id="musicToggle"></button></button>
+
+    <div class="invite_wrap " id="fall">
+        <div class ="sec01 wrap">
+            <img src="img/IMG_9535.JPG" alt="아기사진" class="mainimg"/>
+            <img src="img/main2.png" alt="Sowon's First Birthday" class="titleimg">
+
+        </div>
+
+        <div class ="sec02">
+            <div class="invitation-text">
+                <p>벌써 일년이라는 시간이 흘러 많은 분들의 사랑으로<br>
+                소원이가 건강한 아이로 자랐습니다.</p>
+            
+                <p>기쁘고 행복한 이날,<br>
+                소원이가 받은 사랑보다 더 많이 베풀 줄 아는 아이로<br>
+                자라날 수 있도록 함께 축하해 주시기 바랍니다.</p>
+                <br>
+                <br>
+                <p >
+                  <span class="parents"> 아빠 </span> 양우빈  ·  <span class="parents">엄마</span> 추교진 올림 </p>
+            </div>
+        </div>
+        
+        <div class ="sec03">
+            <img src="img/date.png" alt="invitation" class="dateimg">
+            <div id="kCalendar"></div>
+            <p class="date">2025년 7월 13일 일요일 오전 11시
+             <br><span>다이닝몽드 다산점</span> 
+            </p>
+
+        
+       
+
+          <div class="imgsec">
+              <img src="img/album.png" alt="invitation" class="albumimg">
+
+          </div>
+
+        
+          <!-- 이미지 그리드 -->
+          <div id="photoGrid" class="grid grid-cols-3 gap-2 px-4"></div>
+        
+          <!-- 더보기 버튼 -->
+          <div class="text-center my-6">
+            <button id="loadMoreBtn" class="rounded-md border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 focus:bg-slate-100 active:bg-slate-100 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+              더보기
+            </button>
+          </div>
+        
+          <!-- 이미지 확대 모달 -->
+          <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50">
+            <img id="modalImage" src="" class="max-w-full max-h-full rounded-lg shadow-2xl transition-all duration-300" />
+          </div>
+        
+          <script>
+            const imagePaths = [
+              "img/IMG_3279.jpeg", "img/IMG_3268.jpeg", "img/IMG_3877.jpeg",
+              "img/IMG_3876.jpeg", "img/IMG_3715.jpeg", "img/IMG_4099.jpeg",
+              "img/IMG_3819.JPG", "img/IMG_3932.JPG", "img/IMG_3876.jpeg",
+              "img/IMG_3876.jpeg", "img/IMG_3715.jpeg", "img/IMG_4099.jpeg",
+              "img/IMG_3876.jpeg", "img/IMG_3715.jpeg", "img/IMG_4099.jpeg",
+              "img/IMG_3876.jpeg", "img/IMG_3715.jpeg", "img/IMG_4099.jpeg"
+            ];
+        
+            let currentIndex = 0;
+            const imagesPerPage = 9;
+            const photoGrid = document.getElementById("photoGrid");
+            const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+          
+            function renderImages() {
+              const nextImages = imagePaths.slice(currentIndex, currentIndex + imagesPerPage);
+        
+              nextImages.forEach((src) => {
+                const container = document.createElement("div");
+                container.className = "w-full aspect-square overflow-hidden";
+        
+                const img = document.createElement("img");
+                img.src = src;
+                img.alt = "앨범 이미지";
+                img.className = "w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform";
+        
+                img.addEventListener("click", () => openModal(src));
+        
+                container.appendChild(img);
+                photoGrid.appendChild(container);
+              });
+        
+              currentIndex += nextImages.length;
+              if (currentIndex >= imagePaths.length) {
+                loadMoreBtn.style.display = "none";
+              }
+            }
+        
+            function openModal(src) {
+              document.getElementById("modalImage").src = src;
+              document.getElementById("imageModal").classList.remove("hidden");
+            }
+        
+            document.getElementById("imageModal").addEventListener("click", () => {
+              document.getElementById("imageModal").classList.add("hidden");
+            });
+        
+            loadMoreBtn.addEventListener("click", renderImages);
+        
+            // 초기 이미지 로드
+            renderImages();
+          </script>
+
+          <div class ="sec04" ;>
+          <div class="invitation-text">
+            <img src="img/loca.png" alt="invitation" class="loacimg">
+
+              </div>
+          <div id="daumRoughmapContainer1747364216134" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+          <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+          <script charset="UTF-8">
+              new daum.roughmap.Lander({
+                  "timestamp" : "1747364216134",
+                  "key" : "2o2ph",
+                  "mapWidth" : "640",
+                  "mapHeight" : "360"
+              }).render();
+          </script>
+
+         </div>
+
+      </div>
+      <!--
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+          // 인트로 화면 서서히 사라지기
+          const intro = document.getElementById("introScreen");
+          intro.classList.add("opacity-0");
+          intro.style.pointerEvents = 'none';
+    
+          // 본문 서서히 나타나기
+          const main = document.getElementById("mainContent");
+          main.classList.remove("opacity-0");
+        }, 2500); // 2.5초 후 인트로 제거
+      });
+    </script>-->
+
+    </div>
+  </div>
+</body>
+</html>
+
