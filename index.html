@@ -13,7 +13,7 @@
     <meta property="og:url" content="https://gyojin3770.github.io/baby-invite/" />
     <meta property="og:type" content="website" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 
 <body>
@@ -175,8 +175,46 @@
       });
     </script>-->
 
+   <div class="sec05">
+
+
+
+    <script>
+      // 앱 키로 카카오 초기화
+      Kakao.init('10d2786b3cddb53b13e4379abe0c8139'); // 여기에 복사한 JS 키 넣기
+      console.log(Kakao.isInitialized()); // true면 초기화 성공
+    
+      function shareToKakao() {
+        Kakao.Link.sendDefault({
+          objectType: 'feed',
+          content: {
+            title: '우리 아기 돌잔치에 초대합니다 🎉',
+            description: '일시: 2025년 7월 13일 오전 11시\n장소: 다산 다이닝몽드',
+            imageUrl: 'https://yourdomain.com/images/invitation.jpg', // 대표 이미지
+            link: {
+              mobileWebUrl: 'https://gyojin3770.github.io/sowonfirst_b/',
+              webUrl: 'https://gyojin3770.github.io/sowonfirst_b/'
+            }
+          },
+          buttons: [
+            {
+              title: '초대장 보기',
+              link: {
+                mobileWebUrl: 'https://gyojin3770.github.io/sowonfirst_b/',
+                webUrl: 'https://gyojin3770.github.io/sowonfirst_b/'
+              }
+            }
+          ]
+        });
+      }
+    </script>
+
+<button onclick="shareToKakao()">
+  카카오톡으로 공유하기
+</button>
+   </div>
+     
     </div>
-  </div>
 </body>
 </html>
 
