@@ -22,6 +22,21 @@ body{width: 100%; /* PC에서 모바일 화면처럼 보이도록 가로 100%로
 }
 
 
+#musicToggle{
+  position: absolute;
+  z-index: 3;
+  top:10px; 
+  right: 10%;
+  transform: translateX(-50%);
+  width: 15px;
+  height: 15px;
+  background-image: url(img/music.png);
+  background-size: 15px;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+
+}
+
 @media (max-width: 420px) {
     .wrap { width: 100%; padding: 0;}
   
@@ -249,14 +264,7 @@ body{width: 100%; /* PC에서 모바일 화면처럼 보이도록 가로 100%로
         margin: 0 auto;
         padding-bottom: 30px;
       }
-      .sec05 {
-        width: 100%;
-        background: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    
+
   
 
         #fall .sec04 .loacimg {
@@ -265,6 +273,21 @@ body{width: 100%; /* PC에서 모바일 화면처럼 보이도록 가로 100%로
           margin: 0 auto 35px;
         }
 
+        .sec05 {
+          max-width: 100%;
+          height: auto;
+          margin: 0 auto;         /* 중앙 정렬 */
+          display: block;         /* 인라인 요소가 아닌 블록으로 */
+          text-align: center;
+          padding-bottom: 30px;
+        }
+      
+        .sec05 .share{
+    
+          background-color: #ffffff;
+          padding:10px;
+
+        }
       
       
     
